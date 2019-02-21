@@ -1,7 +1,7 @@
 import { Observable, of, throwError } from 'rxjs';
 
-import { HttpService, HttpRequestOptions } from './http-service';
 import { HttpErrorResponse } from './http-error-response';
+import { HttpRequestOptions, HttpService } from './http-service';
 import { StringMap } from './named-values';
 
 interface HttpResponseOptions {
@@ -20,14 +20,14 @@ export class MockHttpService implements HttpService {
   get requestOptions(): HttpRequestOptions | null {
     return this._requestOptions;
   }
-  
+
   /** Initializes a new MockHttpService instance. */
   constructor() {
     this._requestOptions = null;
     this._responseOptions = {
-      status: 200,
       body: {},
       error: null,
+      status: 200,
     };
   }
 
@@ -59,9 +59,9 @@ export class MockHttpService implements HttpService {
   offline() {
     this._responseOptions = {
       body: null,
+      error: new ProgressEvent('error', { loaded: 0, lengthComputable: false, total: 0 }),
       status: 0,
       statusText: 'Unknown Error',
-      error: new ProgressEvent('error', { loaded: 0, lengthComputable: false, total: 0 })
     };
   }
 
@@ -79,11 +79,11 @@ export class MockHttpService implements HttpService {
     }
 
     return throwError(new HttpErrorResponse({
-      url: this._requestOptions.url,
-      status,
-      statusText,
       error: body || error,
       headers,
+      status,
+      statusText,
+      url: this._requestOptions.url,
     }));
   }
 }

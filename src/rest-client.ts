@@ -1,7 +1,7 @@
 
 // tslint:disable:ban-types
+import { HttpMethod, HttpRequestOptions, HttpService } from './http-service';
 import { NamedValues, StringMap } from './named-values';
-import { HttpService, HttpMethod, HttpRequestOptions } from './http-service';
 
 interface Parameter {
   key: string;
@@ -68,7 +68,7 @@ export function DefaultHeaders(headers: StringMap): any {
  */
 export function BaseUrl(url: string): any {
   return function <TFunc extends Function>(Target: TFunc): TFunc {
-    Target.prototype.getBaseUrl = function (): any {
+    Target.prototype.getBaseUrl = function(): any {
       return url;
     };
     return Target;
@@ -76,8 +76,8 @@ export function BaseUrl(url: string): any {
 }
 
 function paramBuilder(paramName: string): any {
-  return function (key: string): any {
-    return function (target: any, propertyKey: string | symbol, parameterIndex: number): any {
+  return function(key: string): any {
+    return function(target: any, propertyKey: string | symbol, parameterIndex: number): any {
       const metadataKey = `${String(propertyKey)}_${paramName}_parameters`;
       const paramObj: Parameter = {
         key,
@@ -122,21 +122,21 @@ export let Header = paramBuilder('Header');
  * @param headersDef    custom headers in key-value pairs.
  */
 export function Headers(headersDef: Headers): any {
-  return function (_target: RestClient, _propertyKey: string, descriptor: any): any {
+  return function(_target: RestClient, _propertyKey: string, descriptor: any): any {
     descriptor.headers = headersDef;
     return descriptor;
   };
 }
 
 function methodBuilder(method: HttpMethod): any {
-  return function (url: string): any {
-    return function (target: any, propertyKey: string, descriptor: any): any {
+  return function(url: string): any {
+    return function(target: any, propertyKey: string, descriptor: any): any {
       const pPath = target[`${propertyKey}_Path_parameters`] as Parameter[];
       const pQuery = target[`${propertyKey}_Query_parameters`] as Parameter[];
       const pBody = target[`${propertyKey}_Body_parameters`] as Parameter[];
       const pHeader = target[`${propertyKey}_Header_parameters`] as Parameter[];
 
-      descriptor.value = function (...args: any[]): any {
+      descriptor.value = function(...args: any[]): any {
         let body = null;
         if (pBody) {
           body = JSON.stringify(args[pBody[0].parameterIndex]);
@@ -151,11 +151,11 @@ function methodBuilder(method: HttpMethod): any {
           }
         }
 
-        let params = new NamedValues();
+        const params = new NamedValues();
         if (pQuery) {
           pQuery
-            .filter(p => args[p.parameterIndex])
-            .forEach(p => {
+            .filter((p) => args[p.parameterIndex])
+            .forEach((p) => {
               const key = p.key;
               let value = args[p.parameterIndex];
               if (value instanceof Object) {
@@ -185,7 +185,7 @@ function methodBuilder(method: HttpMethod): any {
           request = this.requestInterceptor(request);
         }
 
-        return (<HttpService>this.httpClient).request(request);
+        return (this.httpClient as HttpService).request(request);
       };
     };
   };

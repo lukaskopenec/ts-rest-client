@@ -9,14 +9,27 @@
             true,
             "never-prefix"
         ],
+        "member-access": false,
+        "member-ordering": [
+            true,
+            {
+                "order": [
+                    "static-field",
+                    "instance-field",
+                    "static-method",
+                    "instance-method"
+                ]
+            }
+        ],
         "only-arrow-functions": false,
         "quotemark": {
             "options": [
                 "single",
                 "avoid-escape",
                 "avoid-template"
-            ],
+            ]
         },
+        "variable-name": false
     },
     "rulesDirectory": []
 }

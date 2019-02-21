@@ -16,7 +16,7 @@ export class HttpErrorResponse implements Error {
   readonly url?: string;
 
   constructor(init: { error?: any; headers?: StringMap; status?: number; statusText?: string; url?: string; }) {
-    let data = init || {};
+    const data = init || {};
 
     this.status = data.status || 0;
     this.headers = data.headers || {};
