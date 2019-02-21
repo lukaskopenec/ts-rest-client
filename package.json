@@ -1,0 +1,31 @@
+{
+  "name": "ts-rest-client",
+  "version": "1.0.0",
+  "description": "Simple way to create REST API clients",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukaskopenec/ts-rest-client.git"
+  },
+  "keywords": [
+    "Typescript",
+    "REST"
+  ],
+  "author": "Lukas kopenec",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/lukaskopenec/ts-rest-client/issues"
+  },
+  "homepage": "https://github.com/lukaskopenec/ts-rest-client#readme",
+  "devDependencies": {
+    "rxjs": "^6.4.0",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3"
+  },
+  "peerDependencies": {
+    "rxjs": "~6.3.0"
+  }
+}
