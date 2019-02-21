@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Simple way to create REST API clients",
   "main": "index.js",
+  "files": ["lib /**/*"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
