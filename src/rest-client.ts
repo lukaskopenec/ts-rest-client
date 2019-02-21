@@ -8,8 +8,14 @@ interface Parameter {
   parameterIndex: number;
 }
 
+/**
+ * An interceptor is a function that takes the prepared HTTP request data and returns them modified.
+ */
 export type HttpRequestInterceptor = (request: HttpRequestOptions) => HttpRequestOptions;
 
+/**
+ * Abstract base class for the REST clients.
+ */
 export abstract class RestClient {
   protected httpClient: HttpService;
 
@@ -18,6 +24,11 @@ export abstract class RestClient {
     this.requestInterceptor = null;
   }
 
+  /**
+   * Request interceptor allowing to modifiy the collected request data before sending it.
+   * Typical use is the insertion of an authorization token to the request headers.
+   * Leave null if you don't want to use it.
+   */
   protected requestInterceptor: HttpRequestInterceptor | null;
 
   /**

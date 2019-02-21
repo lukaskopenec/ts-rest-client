@@ -28,5 +28,9 @@ export interface HttpRequestOptions {
  * @see HttpErrorResponse
  */
 export interface HttpService {
+  /**
+   * Performs an HTTP Request.
+   * @param options request data
+   */
   request(options: HttpRequestOptions): Observable<any>;
 }
