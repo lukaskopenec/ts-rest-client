@@ -3,7 +3,7 @@ import { StringMap } from './named-values';
 /**
  * Holds information about a failed HTTP request.
  * If the request failed on server side, error is to be filled with the response body.
- * If the request failed on client side, error is to be filled with ErrorEvent describing what happened.
+ * If the request failed on client side, error is to be filled with an Event object describing what happened.
  */
 export class HttpErrorResponse implements Error {
   readonly error: any | null;

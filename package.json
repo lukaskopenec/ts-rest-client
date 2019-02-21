@@ -3,11 +3,20 @@
   "version": "1.0.0",
   "description": "Simple way to create REST API clients",
   "main": "index.js",
-  "files": ["lib /**/*"],
+  "files": [
+    "lib /**/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --config jestconfig.json",
+    "test:watch": "npm run test -- --watch",
+    "coverage": "npm run test -- --coverage",
     "build": "tsc",
-    "lint": "tslint --project tsconfig.json"
+    "lint": "tslint --project tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
@@ -24,7 +33,10 @@
   },
   "homepage": "https://github.com/lukaskopenec/ts-rest-client#readme",
   "devDependencies": {
+    "@types/jest": "^24.0.6",
+    "jest": "^24.1.0",
     "rxjs": "^6.4.0",
+    "ts-jest": "^24.0.0",
     "tslint": "^5.12.1",
     "typescript": "^3.3.3"
   },
