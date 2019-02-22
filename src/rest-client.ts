@@ -121,7 +121,7 @@ export let Header = paramBuilder('Header');
  * Set custom headers for a REST method.
  * @param headersDef    custom headers in key-value pairs.
  */
-export function Headers(headersDef: Headers): any {
+export function Headers(headersDef: StringMap): any {
   return function(_target: RestClient, _propertyKey: string, descriptor: any): any {
     descriptor.headers = headersDef;
     return descriptor;
@@ -154,8 +154,8 @@ function methodBuilder(method: HttpMethod): any {
         const params = new NamedValues();
         if (pQuery) {
           pQuery
-            .filter((p) => args[p.parameterIndex])
-            .forEach((p) => {
+            .filter(p => args[p.parameterIndex])
+            .forEach(p => {
               const key = p.key;
               let value = args[p.parameterIndex];
               if (value instanceof Object) {

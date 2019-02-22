@@ -13,6 +13,7 @@
             true,
             "never-prefix"
         ],
+        "max-line-length": [true, 140],
         "member-access": false,
         "member-ordering": [
             true,
