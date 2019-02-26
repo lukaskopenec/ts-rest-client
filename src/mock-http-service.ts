@@ -47,9 +47,9 @@ export class MockHttpService implements HttpService {
 
   /**
    * Makes the following request throw a given client-side error.
-   * @param error The ErrorEvent object to be returned in the HttpErrorResponse
+   * @param error The Event object to be returned in the HttpErrorResponse
    */
-  clientError(error: ErrorEvent) {
+  clientError(error: Event) {
     this._responseOptions = { status: 0, body: null, headers: undefined, error };
   }
 
