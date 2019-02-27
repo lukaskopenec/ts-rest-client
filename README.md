@@ -132,4 +132,4 @@ This is a mocked backend that can be passed to the RestClient to simplify writin
 ### Utility classes
 - `StringMap`: an interface for an object containing key-value pairs where both the key and the value are strings
 - `HttpService`: an interface for the [backend](#backends)
-- `HttpRequestOptions`: data collected by the RestClient for creating the actual HTTP request
+- `HttpRequestOptions`: data collected by the RestClient for creating the actual HTTP request, includes methods for basic request formatting

@@ -25,6 +25,11 @@ const defaultHeaders = {
   Accepts: 'application/json',
 };
 
+const expectedHeaders = {
+  ...defaultHeaders,
+  'Content-Type': 'application/json',
+};
+
 const additionalHeaders = {
   MethodHeader: 'header 1',
   ParamHeader: 'header 2',
@@ -87,7 +92,7 @@ describe('RestClient', () => {
 
     expect(request.method).toBe('GET');
     expect(request.url).toBe(`${baseUrl}/test-get`);
-    expect(request.headers.values).toEqual(defaultHeaders);
+    expect(request.headers.values).toEqual(expectedHeaders);
   });
 
   it('@POST() generates a POST HTTP request with given body. @PATH() correctly modifies URL.', () => {
@@ -119,7 +124,7 @@ describe('RestClient', () => {
     expect(request.method).toBe('DELETE');
     expect(request.url).toBe(`${baseUrl}/test-delete`);
     expect(request.headers.values).toEqual({
-      ...defaultHeaders,
+      ...expectedHeaders,
       myHeader: 'myValue',
     });
   });
@@ -131,7 +136,7 @@ describe('RestClient', () => {
     expect(request.method).toBe('HEAD');
     expect(request.url).toBe(`${baseUrl}/test-head`);
     expect(request.headers.values).toEqual({
-      ...defaultHeaders,
+      ...expectedHeaders,
       ...additionalHeaders,
     });
   });

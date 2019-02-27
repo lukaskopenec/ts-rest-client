@@ -1,6 +1,7 @@
 
 // tslint:disable:ban-types
-import { HttpMethod, HttpRequestOptions, HttpService } from './http-service';
+import { HttpMethod, HttpRequestOptions } from './http-request-options';
+import { HttpService } from './http-service';
 import { NamedValues, StringMap } from './named-values';
 
 interface Parameter {
@@ -180,7 +181,7 @@ function methodBuilder(method: HttpMethod): any {
         }
 
         const finalUrl = this.getBaseUrl() + resUrl;
-        let request = { url: finalUrl, method, body, headers, params };
+        let request = new HttpRequestOptions(finalUrl, method, body, headers, params);
         if (this.requestInterceptor) {
           request = this.requestInterceptor(request);
         }

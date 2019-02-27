@@ -1,7 +1,8 @@
 import { Observable, of, throwError } from 'rxjs';
 
 import { HttpErrorResponse } from './http-error-response';
-import { HttpRequestOptions, HttpService } from './http-service';
+import { HttpRequestOptions } from './http-request-options';
+import { HttpService } from './http-service';
 import { StringMap } from './named-values';
 
 interface HttpResponseOptions {

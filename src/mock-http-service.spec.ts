@@ -1,16 +1,16 @@
 import { HttpErrorResponse } from './http-error-response';
-import { HttpRequestOptions } from './http-service';
+import { HttpRequestOptions } from './http-request-options';
 import { MockHttpService } from './mock-http-service';
 import { NamedValues } from './named-values';
 
 describe('Mock HttpService', () => {
   const service = new MockHttpService();
-  const request: HttpRequestOptions = {
-    body: { message: 'Hello' },
-    headers: new NamedValues({ Authorization: 'Bearer... or bear?' }),
-    method: 'POST',
-    url: 'http://example.org/some/endpoint',
-  };
+  const request = new HttpRequestOptions(
+    'http://example.org/some/endpoint',
+    'POST',
+    { message: 'Hello' },
+    new NamedValues({ Authorization: 'Bearer... or bear?' }),
+  );
 
   it('requestOptions should be null before the first request', () => {
     expect(service.requestOptions).toBeNull();

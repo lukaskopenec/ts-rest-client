@@ -2,9 +2,9 @@
   "name": "ts-rest-client",
   "version": "1.0.0",
   "description": "Simple way to create REST API clients",
-  "main": "index.js",
+  "main": "lib/index.js",
   "files": [
-    "lib /**/*"
+    "lib/**/*"
   ],
   "scripts": {
     "test": "jest --config jestconfig.json",
