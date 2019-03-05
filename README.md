@@ -6,9 +6,9 @@ Generic service for consuming RESTful API using Typescript decorators. Though th
 
 To decouple the REST client from a concrete XHR engine, the client just collects the data needed for creating an HTTP request and then passes those to an interface called `HttpService` which is then responsible for executing the actual request, parsing the response and returning the data back. Actually there are the following backends implemented:
 
- - `ts-rest-client-raw`: Raw implementation using native [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
- - `ts-rest-client-angular`: Angular implementation using [HttpClient](https://angular.io/api/common/http/HttpClient)
- - `ts-rest-client-fetch`: Implementation using [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+ - `ts-rest-client-raw` (in progress): Raw implementation using native [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
+ - `ts-rest-client-angular` (in progress): Angular implementation using [HttpClient](https://angular.io/api/common/http/HttpClient)
+ - [`ts-rest-client-fetch`](https://npmjs.com/package/ts-rest-client-fetch): Implementation using [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 
 Besides that the base `ts-rest-client` package contains a mocked `MockHttpService` that can help you with writing your unit tests.
 
