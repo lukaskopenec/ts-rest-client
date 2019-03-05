@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/ts-rest-client.svg)](https://badge.fury.io/js/ts-rest-client)
+
 # ts-rest-client
 
 Generic service for consuming RESTful API using Typescript decorators. Though the idea comes from the [angular2-rest](https://github.com/Paldom/angular2-rest) package, I abstracted it a bit more so that it is not dependent on Angular and so that it supports easier unit testing.
