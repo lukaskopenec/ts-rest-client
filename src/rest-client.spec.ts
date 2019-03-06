@@ -12,10 +12,10 @@ import {
   Header,
   Headers,
   HttpRequestInterceptor,
+  PATCH,
   Path,
   POST,
   PUT,
-  PATCH,
   Query,
   RestClient,
 } from './rest-client';
