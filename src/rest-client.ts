@@ -98,25 +98,25 @@ function paramBuilder(paramName: string): any {
  * Path variable of a method's URL, type: string.
  * @param key   path key to bind value.
  */
-export let Path = paramBuilder('Path');
+export const Path = paramBuilder('Path');
 
 /**
  * Query value of a method's URL, type: string.
  * @param key   query key to bind value.
  */
-export let Query = paramBuilder('Query');
+export const Query = paramBuilder('Query');
 
 /**
  * Body of a REST method, type: key-value pair object.
  * Only one body per method!
  */
-export let Body = paramBuilder('Body')('Body');
+export const Body = paramBuilder('Body')('Body');
 
 /**
  * Custom header of a REST method, type: string.
  * @param key   header key to bind value.
  */
-export let Header = paramBuilder('Header');
+export const Header = paramBuilder('Header');
 
 /**
  * Set custom headers for a REST method.
@@ -196,28 +196,34 @@ function methodBuilder(method: HttpMethod): any {
  * GET method.
  * @param url   resource URL of the method
  */
-export let GET = methodBuilder('GET');
+export const GET = methodBuilder('GET');
 
 /**
  * POST method.
  * @param url   resource URL of the method
  */
-export let POST = methodBuilder('POST');
+export const POST = methodBuilder('POST');
 
 /**
  * PUT method.
  * @param url   resource URL of the method
  */
-export let PUT = methodBuilder('PUT');
+export const PUT = methodBuilder('PUT');
+
+/**
+ * PATCH method.
+ * @param url   resource URL of the method
+ */
+export const PATCH = methodBuilder('PATCH');
 
 /**
  * DELETE method.
  * @param url   resource URL of the method
  */
-export let DELETE = methodBuilder('DELETE');
+export const DELETE = methodBuilder('DELETE');
 
 /**
  * HEAD method.
  * @param url   resource URL of the method
  */
-export let HEAD = methodBuilder('HEAD');
+export const HEAD = methodBuilder('HEAD');

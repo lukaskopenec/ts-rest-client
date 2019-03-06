@@ -1,7 +1,7 @@
 import { NamedValues } from './named-values';
 
 /** HTTP Method to be used in the request. */
-export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD';
+export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'HEAD';
 
 /**
  * HTTP Request options.

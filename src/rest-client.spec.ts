@@ -15,6 +15,7 @@ import {
   Path,
   POST,
   PUT,
+  PATCH,
   Query,
   RestClient,
 } from './rest-client';
@@ -73,6 +74,9 @@ class TestingRestClient extends RestClient {
   @HEAD('/test-head')
   @Headers(additionalHeaders)
   testHead(): Observable<any> { return null; }
+
+  @PATCH('/test-patch')
+  testPatch(): Observable<any> { return null; }
 }
 
 describe('RestClient', () => {
@@ -139,6 +143,14 @@ describe('RestClient', () => {
       ...expectedHeaders,
       ...additionalHeaders,
     });
+  });
+
+  it('@PATCH() generates a PATCH HTTP request.', () => {
+    restClient.testPatch();
+    const request = restClient.mockService.requestOptions;
+
+    expect(request.method).toBe('PATCH');
+    expect(request.url).toBe(`${baseUrl}/test-patch`);
   });
 
   it('requestInterceptor receives the request before sending and can modify it', () => {
