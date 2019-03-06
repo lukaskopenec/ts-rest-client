@@ -127,6 +127,7 @@ This is a mocked backend that can be passed to the RestClient to simplify writin
  - `requestOptions: HttpRequestOptions`: returns the data of the last request
 
 #### Methods
+ - `callback(handler: (request: HttpRequestOptions) => any)`: Specifies a callback that will be called on each subsequent request. MockService will return whatever the callback returns or throw whatever it throws.
  - `response(body: any = {}, status: number = 200, statusText?: string, headers?: StringMap)`: Defines an HTTP response that will be sent for subsequent request(s).
  - `clientError(error: Event)`: Defines a client-side error that will be returned for subsequent request(s)
  - `offline()`: Simulates a network-offline condition 

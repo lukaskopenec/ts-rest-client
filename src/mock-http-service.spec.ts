@@ -93,4 +93,34 @@ describe('Mock HttpService', () => {
     expect(response.error).toEqual(error);
     expect(response.status).toBe(0);
   });
+
+  it('request should call a specified callback and return the data from it', () => {
+    const cb = jest.fn().mockImplementation(() => ({ message: 'Success' }));
+    service.callback(cb);
+
+    let response: any;
+    service.request(request).subscribe(res => response = res);
+
+    expect(response).toEqual({ message: 'Success' });
+    expect(cb.mock.calls.length).toBe(1);
+    expect(cb.mock.calls[0][0]).toBe(request);
+  });
+
+  it('request shuld throw an error thrown by the callback', () => {
+    const error = new HttpErrorResponse({
+      error: { message: 'Invalid request' },
+      status: 400,
+    });
+    const cb = jest.fn().mockImplementation(() => { throw error; });
+    service.callback(cb);
+
+    let response: any;
+    service.request(request).subscribe(
+      () => { throw new Error('Bummer, request should have thrown'); },
+      err => response = err,
+    );
+
+    expect(response instanceof HttpErrorResponse).toBeTruthy();
+    expect(response).toEqual(error);
+  });
 });

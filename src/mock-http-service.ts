@@ -11,6 +11,7 @@ interface HttpResponseOptions {
   body?: any;
   headers?: StringMap;
   error: any | null;
+  callback?: (request: HttpRequestOptions) => any;
 }
 
 /**
@@ -27,6 +28,7 @@ export class MockHttpService implements HttpService {
     this._requestOptions = null;
     this._responseOptions = {
       body: {},
+      callback: null,
       error: null,
       status: 200,
     };
@@ -36,6 +38,15 @@ export class MockHttpService implements HttpService {
   private _responseOptions: HttpResponseOptions;
 
   /**
+   * Specifies a callback that will handle each subsequent request.
+   * NOTE: To simulate an error just throw the corresponding HttpErrorResponse.
+   * @param handler Function that will receive the request data and return a response.
+   */
+  callback(handler: (request: HttpRequestOptions) => any) {
+    this._responseOptions = { status: 0, body: null, headers: undefined, error: null, callback: handler };
+  }
+
+  /**
    * Specifies an HTTP response that should be returned to the following request.
    * @param body Optional body to be returned in the response
    * @param status HTTP Status code; default is 200
@@ -43,7 +54,7 @@ export class MockHttpService implements HttpService {
    * @param headers Optional headers to be returned in the response
    */
   response(body: any = {}, status: number = 200, statusText?: string, headers?: StringMap) {
-    this._responseOptions = { body, status, statusText, error: null, headers };
+    this._responseOptions = { body, status, statusText, error: null, headers, callback: null };
   }
 
   /**
@@ -73,7 +84,15 @@ export class MockHttpService implements HttpService {
 
     this._requestOptions = options;
 
-    const { status, statusText, body, error, headers } = this._responseOptions;
+    const { status, statusText, body, error, headers, callback } = this._responseOptions;
+
+    if (callback) {
+      try {
+        return of(callback(options));
+      } catch (err) {
+        return throwError(err);
+      }
+    }
 
     if (status >= 200 && status < 400) {
       return of(body);
