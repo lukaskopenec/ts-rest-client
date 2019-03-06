@@ -1,4 +1,4 @@
-[![npm version](https://badge.fury.io/js/ts-rest-client.svg)](https://badge.fury.io/js/ts-rest-client)
+[![npm version](https://badge.fury.io/js/ts-rest-client.svg)](https://badge.fury.io/js/ts-rest-client) [![Build status](https://travis-ci.org/lukaskopenec/ts-rest-client.svg?branch=master)](https://travis-ci.org/lukaskopenec/ts-rest-client.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/lukaskopenec/ts-rest-client/badge.svg?branch=master)](https://coveralls.io/github/lukaskopenec/ts-rest-client?branch=master)
 
 # ts-rest-client
 
