@@ -8,7 +8,7 @@ describe('HttpRequestOptions', () => {
       Names: 'Jeremy Bishop & Jane Lawrence',
       url: 'https://example.com/query-string',
     });
-    const serialized = 'MyValue=1+5=6&Names=Jeremy%20Bishop%20%26%20Jane%20Lawrence&url=https://example.com/query-string';
+    const serialized = 'MyValue=1%2B5%3D6&Names=Jeremy%20Bishop%20%26%20Jane%20Lawrence&url=https%3A%2F%2Fexample.com%2Fquery-string';
     let url = 'http://test.com/page';
 
     let options = new HttpRequestOptions(url, 'GET', null, null, params);
