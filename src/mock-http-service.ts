@@ -2,7 +2,7 @@ import { Observable, of, throwError } from 'rxjs';
 
 import { HttpErrorResponse } from './http-error-response';
 import { HttpRequestOptions } from './http-request-options';
-import { HttpService } from './http-service';
+import { HttpRequestInterceptor, HttpService } from './http-service';
 import { StringMap } from './named-values';
 
 interface HttpResponseOptions {
@@ -34,6 +34,7 @@ export class MockHttpService implements HttpService {
     };
   }
 
+  private _requestInterceptor: HttpRequestInterceptor;
   private _requestOptions: HttpRequestOptions | null;
   private _responseOptions: HttpResponseOptions;
 
@@ -82,7 +83,7 @@ export class MockHttpService implements HttpService {
       throw new Error('Invalid request data');
     }
 
-    this._requestOptions = options;
+    this._requestOptions = this._requestInterceptor ? this._requestInterceptor(options) : options;
 
     const { status, statusText, body, error, headers, callback } = this._responseOptions;
 
@@ -105,5 +106,9 @@ export class MockHttpService implements HttpService {
       statusText,
       url: this._requestOptions.url,
     }));
+  }
+
+  setRequestInterceptor(interceptor?: HttpRequestInterceptor) {
+    this._requestInterceptor = interceptor;
   }
 }

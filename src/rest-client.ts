@@ -1,18 +1,13 @@
 
 // tslint:disable:ban-types
 import { HttpMethod, HttpRequestOptions } from './http-request-options';
-import { HttpService } from './http-service';
+import { HttpRequestInterceptor, HttpService } from './http-service';
 import { NamedValues, StringMap } from './named-values';
 
 interface Parameter {
   key: string;
   parameterIndex: number;
 }
-
-/**
- * An interceptor is a function that takes the prepared HTTP request data and returns them modified.
- */
-export type HttpRequestInterceptor = (request: HttpRequestOptions) => HttpRequestOptions;
 
 /**
  * Abstract base class for the REST clients.
@@ -22,15 +17,16 @@ export abstract class RestClient {
 
   constructor(httpClient: HttpService) {
     this.httpClient = httpClient;
-    this.requestInterceptor = null;
   }
 
   /**
-   * Request interceptor allowing to modifiy the collected request data before sending it.
-   * Typical use is the insertion of an authorization token to the request headers.
-   * Leave null if you don't want to use it.
+   * Setting a request interceptor allows you to read and eventually modify the request data before actually sending it.
+   * If you pass null or undefined, the actual interceptor will be unset.
+   * @param interceptor A function that will intercept and eventually modify the request data before sending
    */
-  protected requestInterceptor: HttpRequestInterceptor | null;
+  setRequestInterceptor(interceptor?: HttpRequestInterceptor) {
+    this.httpClient.setRequestInterceptor(interceptor);
+  }
 
   /**
    * Returns the base of the REST API URL.
@@ -181,10 +177,7 @@ function methodBuilder(method: HttpMethod): any {
         }
 
         const finalUrl = this.getBaseUrl() + resUrl;
-        let request = new HttpRequestOptions(finalUrl, method, body, headers, params);
-        if (this.requestInterceptor) {
-          request = this.requestInterceptor(request);
-        }
+        const request = new HttpRequestOptions(finalUrl, method, body, headers, params);
 
         return (this.httpClient as HttpService).request(request);
       };

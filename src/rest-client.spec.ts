@@ -11,7 +11,6 @@ import {
   HEAD,
   Header,
   Headers,
-  HttpRequestInterceptor,
   PATCH,
   Path,
   POST,
@@ -53,10 +52,6 @@ class TestingRestClient extends RestClient {
 
   constructor() {
     super(new MockHttpService());
-  }
-
-  setRequestInterceptor(interceptor: HttpRequestInterceptor) {
-    this.requestInterceptor = interceptor;
   }
 
   @GET('/test-get')
