@@ -34,13 +34,13 @@
   },
   "homepage": "https://github.com/lukaskopenec/ts-rest-client#readme",
   "devDependencies": {
-    "@types/jest": "^24.0.6",
-    "coveralls": "^3.0.3",
-    "jest": "^24.1.0",
-    "rxjs": "^6.4.0",
-    "ts-jest": "^24.0.0",
-    "tslint": "^5.12.1",
-    "typescript": "^3.3.3"
+    "@types/jest": "^25.2.1",
+    "coveralls": "^3.1.0",
+    "jest": "^25.4.0",
+    "rxjs": "^6.5.5",
+    "ts-jest": "^25.4.0",
+    "tslint": "^6.1.2",
+    "typescript": "^3.8.3"
   },
   "peerDependencies": {
     "rxjs": "~6.3.0"
