@@ -1,6 +1,6 @@
 {
   "name": "ts-rest-client",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Simple way to create REST API clients",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
